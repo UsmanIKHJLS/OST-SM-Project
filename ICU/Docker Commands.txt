@@ -1,0 +1,13 @@
+Start the Services: Run the following command to bring up the services:
+docker-compose up -d
+
+Verify Services: Check if Kafka and Zookeeper are running:
+docker-compose ps
+
+Create Topics:
+# Create log topic
+docker exec -it kafka kafka-topics.sh --create --topic logs --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+How to Verify Kafka Messages:
+docker exec -it kafka kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic icu_topic --from-beginning --max-messages 5
+

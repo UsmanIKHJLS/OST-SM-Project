@@ -66,20 +66,25 @@ print("Splitting data into training and validation sets...")
 x_train, x_val, y_train, y_val = train_test_split(feature_array, label_array, test_size=0.3, random_state=42)
 
 # Reshape data for LSTM (3D input: [samples, timesteps, features])
-history_size = 100  # Number of timesteps to consider for LSTM
+history_size = 100 
 x_train = np.array([x_train[i:i+history_size] for i in range(len(x_train) - history_size)])
-y_train = y_train[history_size:]  # Match labels with historical samples
+y_train = y_train[history_size:] 
 x_val = np.array([x_val[i:i+history_size] for i in range(len(x_val) - history_size)])
 y_val = y_val[history_size:]
 
 # Step 7: Build the LSTM Model
 print("Building LSTM model...")
 def build_lstm_model(input_shape):
-    model = Sequential([
-        LSTM(64, input_shape=input_shape),
-        Dense(1, activation="sigmoid")  # Binary classification
+    model = tf.keras.models.Sequential([
+        tf.keras.layers.LSTM(32, return_sequences=True, input_shape=input_shape,
+                             dropout=0.1,  
+                             kernel_regularizer=tf.keras.regularizers.l2(0.01)),
+        tf.keras.layers.LSTM(16, dropout=0.1),  
+        tf.keras.layers.Dense(20, activation='relu'), 
+        tf.keras.layers.Dense(1, activation="sigmoid")
     ])
-    model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.001)  # Adjust learning rate if necessary
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=["accuracy"])
     return model
 
 model = build_lstm_model(input_shape=(history_size, len(selected_features)))

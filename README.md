@@ -25,7 +25,7 @@ By integrating these technologies, stakeholders can monitor data flows, identify
 
 ## System Architecture
 
-![System Architecture](docs/System_diagram.png)
+![System Architecture](docs/Architecture.drawio.png)
 
 ### Data Ingestion Layer
 - Collects raw data (sensor readings, logs, audio streams) via a **Kafka Producer**.

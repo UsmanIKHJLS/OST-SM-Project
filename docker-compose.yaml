@@ -151,3 +151,14 @@ services:
       spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.0 stream_miner.py"
     networks:
       - kafka_network
+
+  chronograf:
+    image: chronograf:1.10.0
+    ports:
+      - "8888:8888"
+    depends_on:
+      - influxdb
+    environment:
+      INFLUXDB_URL: http://influxdb:8086
+    networks:
+      - kafka_network

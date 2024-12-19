@@ -57,14 +57,11 @@ By integrating these technologies, stakeholders can monitor data flows, identify
   - **Basic Clustering (e.g., K-Means)**: Groups data to flag atypical patterns.
 
 ### Data Storage for Consumers
-- **Consumer 1 (Logstash & Elasticsearch)**:
-  - **Logstash** ingests and formats data for **Elasticsearch**.
-  - Enables efficient search, storage, and analysis of logs.
-- **Consumer 2 (InfluxDB)**:
+- **Consumer: (InfluxDB)**:
   - Stores time-series data for quick retrieval and historical tracking.
 
 ### Visualization Layer
-- **Kibana**: Visualizes Elasticsearch-indexed data for real-time anomaly detection.
+- **Chronograf**: Visualizes InfluxDB time-series data for real-time anomaly detection.
 - **Grafana**: Displays InfluxDB time-series data for historical trend analysis and proactive maintenance.
 
 ---
@@ -73,8 +70,7 @@ By integrating these technologies, stakeholders can monitor data flows, identify
 - **Kafka**: Real-time data ingestion and streaming.
 - **Apache Spark**: Real-time and batch data processing.
 - **InfluxDB**: Time-series data storage.
-- **Elasticsearch**: Log storage and search.
-- **Grafana & Kibana**: Visualization tools.
+- **Grafana & Chronograf**: Visualization tools.
 - **Python**: For ML model development.
 
 ---
